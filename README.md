@@ -19,17 +19,17 @@ cd repo
 ### Separating flavors
 # Dev For Development Server
 ```bash
-flutter build apk -t lib/main_dev.dart --flavor=dev --debug
+flutter build apk -t lib/main_dev.dart #--flavor=dev --debug
 ```
 # Stg for Staging Server
 ```bash
-flutter build apk -t lib/main_stg.dart --flavor=stg --debug
+flutter build apk -t lib/main_stg.dart #--flavor=stg --debug
 ```
 # Live for Production Server
 ```bash
-flutter build apk -t lib/main_prod.dart --flavor=prod --debug
-flutter build apk -t lib/main_prod.dart --flavor=prod --release
-flutter build appbundle -t lib/main_prod.dart --flavor=prod --release
+flutter build apk -t lib/main_prod.dart #--flavor=prod --debug
+flutter build apk -t lib/main_prod.dart #--flavor=prod --release
+flutter build appbundle -t lib/main_prod.dart #--flavor=prod --release
 ```
 ##### Get all the packages
 

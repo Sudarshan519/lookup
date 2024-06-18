@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  cached_network_image: ^3.3.1
   cupertino_icons: ^1.0.6
   dartz: ^0.10.1
   firebase_auth: ^5.1.0
@@ -84,12 +85,8 @@ flutter:
   assets:
     - assets/Animation - 1718690436751.json
 flutter_native_splash:
-  color: "#0000FF"
-  # background_image_dark: assets/splash.png
-  # image: assets/image_2023_12_11T11_37_59_711Z-removebg-preview.png
-  color_dark: "#1D286D"
-  # image_dark: assets/image_2023_12_11T11_37_59_711Z-removebg-preview.png
+  image: assets/Logo Screen.png
+  color: "#42a5f5"
+ 
   android: true
   ios: true
-  android_gravity: center
-  ios_content_mode: center

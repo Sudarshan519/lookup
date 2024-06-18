@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lookup/ui/auth/login_screen.dart';
 import 'package:lookup/ui/home/home_screen.dart';
 import 'package:lookup/ui/widgets/auth_button.dart';
 import 'package:provider/provider.dart';
@@ -49,18 +50,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       Center(
                         child: Column(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 100,
                             ),
-                            Text(
-                              "LOOK UP",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineMedium
-                                  ?.copyWith(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 28,
-                                      color: Colors.white),
+                            Hero(
+                              tag: 'logo',
+                              child: Text(
+                                "LOOK UP",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineMedium
+                                    ?.copyWith(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 28,
+                                        color: Colors.white),
+                              ),
                             ),
                             Text(
                               "Please fill your login details",
@@ -72,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 40,
                       ),
                       Column(
@@ -86,9 +90,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ?.copyWith(color: Colors.white),
                           ),
                           TextField(
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                             controller: _emailController,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                                 labelStyle: TextStyle(color: Colors.white),
                                 labelText: 'Email',
                                 enabledBorder: UnderlineInputBorder(
@@ -96,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         BorderSide(color: Colors.white))),
                           ),
                           TextField(
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                             controller: _passwordController,
                             decoration: const InputDecoration(
                                 labelStyle: TextStyle(color: Colors.white),
@@ -114,11 +118,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                     height: MediaQuery.of(context).size.height * .6,
                     alignment: Alignment.bottomCenter,
-                    child: LoginButtons(
+                    child: LoginPageButtons(
                         emailController: _emailController,
                         passwordController: _passwordController,
                         authProvider: authProvider)),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 Column(
@@ -132,16 +136,16 @@ class _LoginScreenState extends State<LoginScreen> {
                             alignment: Alignment.center,
                             child: Column(
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   height: 32,
                                 ),
-                                Text("or login in with"),
-                                SizedBox(
+                                const Text("or login in with sdfsdf"),
+                                const SizedBox(
                                   height: 8,
                                 ),
-                                Row(
+                                const Row(
                                   children: [
-                                    SocialLoginButton(
+                                    const SocialLoginButton(
                                         icon: FontAwesomeIcons.google),
                                     SocialLoginButton(
                                         icon: FontAwesomeIcons.facebook),
@@ -149,22 +153,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                         icon: FontAwesomeIcons.twitter),
                                   ],
                                 ),
-                                RichText(
-                                    text: TextSpan(children: [
-                                  TextSpan(
-                                      text: "Don't have account ?",
-                                      style: TextStyle(
-                                          color: Colors.grey.shade800)),
-                                  TextSpan(
-                                      text: "Signup.",
-                                      style: TextStyle(
-                                          color: Colors.grey.shade800)),
-                                ], style: TextStyle(color: Colors.black))),
+                                SignupTextWidget(),
                               ],
                             )),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                   ],
@@ -178,37 +172,25 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-class SocialLoginButton extends StatelessWidget {
-  const SocialLoginButton({super.key, required this.icon});
-  final IconData icon;
+class SignupTextWidget extends StatelessWidget {
+  const SignupTextWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 50,
-      height: 50,
-      margin: EdgeInsets.only(right: 12),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(6),
-          border: Border.all(color: Colors.grey.shade200),
-          boxShadow: const [
-            BoxShadow(
-              blurRadius: 4,
-              color: Color(0x33000000),
-              offset: Offset(
-                0,
-                2,
-              ),
-            )
-          ]),
-      child: Icon(icon),
-    );
+    return RichText(
+        text: TextSpan(children: [
+      TextSpan(
+          text: "Don't have account ?",
+          style: TextStyle(color: Colors.grey.shade800)),
+      TextSpan(text: "Signup.", style: TextStyle(color: Colors.grey.shade800)),
+    ], style: const TextStyle(color: Colors.black)));
   }
 }
 
-class LoginButtons extends StatelessWidget {
-  const LoginButtons({
+class LoginPageButtons extends StatelessWidget {
+  const LoginPageButtons({
     super.key,
     required TextEditingController emailController,
     required TextEditingController passwordController,
@@ -227,7 +209,7 @@ class LoginButtons extends StatelessWidget {
       children: [
         Container(
             height: 36,
-            decoration: BoxDecoration(boxShadow: const [
+            decoration: const BoxDecoration(boxShadow: [
               BoxShadow(
                 blurRadius: 4,
                 color: Color(0x33000000),
@@ -243,12 +225,12 @@ class LoginButtons extends StatelessWidget {
                 Navigator.pushNamed(context, '/signup');
               },
             )),
-        SizedBox(
+        const SizedBox(
           width: 20,
         ),
         Container(
           height: 36,
-          decoration: BoxDecoration(boxShadow: const [
+          decoration: const BoxDecoration(boxShadow: [
             BoxShadow(
               blurRadius: 4,
               color: Color(0x33000000),
@@ -262,7 +244,7 @@ class LoginButtons extends StatelessWidget {
             style: OutlinedButton.styleFrom(
               backgroundColor: const Color(0xff4B39EF),
               foregroundColor: Colors.white,
-              side: BorderSide(color: Colors.white, width: 1.6),
+              side: const BorderSide(color: Colors.white, width: 1.6),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),

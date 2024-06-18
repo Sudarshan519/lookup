@@ -21,9 +21,12 @@ class AppRoutes {
       case '/detail':
         var args = settings.arguments as Map<String, dynamic>?;
         String? image = args?['image'];
-
+        String? tag = args?['tag'];
         return MaterialPageRoute(
-            builder: (_) => DetailScreen(image: image ?? ''));
+            builder: (_) => DetailScreen(
+                  image: image ?? '',
+                  tag: tag ?? '',
+                ));
       default:
         return MaterialPageRoute(builder: (_) => LoginScreen());
     }

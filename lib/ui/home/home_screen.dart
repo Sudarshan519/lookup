@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lookup/features/auth/presentation/auth_provider.dart';
+import 'package:lookup/ui/home/tabs/add_tab.dart';
+import 'package:lookup/ui/home/tabs/chat_tab.dart';
 import 'package:lookup/ui/home/tabs/home_tab.dart';
 import 'package:lookup/ui/home/tabs/profile_tab.dart';
+import 'package:lookup/ui/home/tabs/search_tab.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,14 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<FirebaseAuthProvider>(context);
-    var tabs = [
-      HomeTab(),
-      ProfileTab(),
-      ProfileTab(),
-      ProfileTab(),
-      ProfileTab()
-    ];
-    var container = Container(
+    var tabs = [HomeTab(), SearchTab(), AddTab(), ChatTab(), ProfileTab()];
+    var bottomNav = Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       color: Color.fromARGB(255, 34, 37, 39),
       height: 60,
@@ -74,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
         top: true,
         child: tabs[selectedTab],
       ),
-      bottomNavigationBar: container,
+      bottomNavigationBar: bottomNav,
     );
   }
 }

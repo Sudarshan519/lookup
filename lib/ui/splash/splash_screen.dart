@@ -33,14 +33,17 @@ class SplashScreen extends StatelessWidget {
                     return Scaffold(
                       backgroundColor: const Color(0xff4B39EF),
                       body: Center(
-                        child: Text(
-                          "LOOK UP",
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge
-                              ?.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700),
+                        child: Hero(
+                          tag: 'logo',
+                          child: Text(
+                            "LOOK UP",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700),
+                          ),
                         ),
                       ),
                     );

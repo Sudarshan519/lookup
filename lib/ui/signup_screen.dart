@@ -50,15 +50,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           SizedBox(
                             height: 100,
                           ),
-                          Text(
-                            "LOOK UP",
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineMedium
-                                ?.copyWith(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 28,
-                                    color: Colors.white),
+                          Hero(
+                            tag: 'logo',
+                            child: Text(
+                              "LOOK UP",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineMedium
+                                  ?.copyWith(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 28,
+                                      color: Colors.white),
+                            ),
                           ),
                           Text(
                             "Please fill your signup details",
@@ -110,7 +113,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Container(
                   height: MediaQuery.of(context).size.height * .6,
                   alignment: Alignment.bottomCenter,
-                  child: LoginButtons(
+                  child: SignUpPageButtons(
                       emailController: _emailController,
                       passwordController: _passwordController,
                       authProvider: authProvider)),
@@ -198,8 +201,8 @@ class SocialLoginButton extends StatelessWidget {
   }
 }
 
-class LoginButtons extends StatelessWidget {
-  const LoginButtons({
+class SignUpPageButtons extends StatelessWidget {
+  const SignUpPageButtons({
     super.key,
     required TextEditingController emailController,
     required TextEditingController passwordController,

@@ -4,7 +4,7 @@ import 'package:lookup/config/routes/rotues.dart';
 import 'package:lookup/features/favourites/presentation/favourites_provider.dart';
 
 import 'package:provider/provider.dart';
-// import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:lookup/features/auth/presentation/auth_provider.dart';
 import 'package:lookup/ui/splash/splash_screen.dart';
 import 'package:lookup/features/auth/domain/usecases/authentication_usecase.dart';
@@ -13,9 +13,13 @@ import 'package:lookup/features/auth/data/repository/auth_service.dart';
 import 'core/constants/app_constants.dart';
 
 void main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   await appInit(appEnv: AppEnv.PROD);
-  WidgetsFlutterBinding.ensureInitialized();
+
   // await Firebase.initializeApp();
+  // FlutterNativeSplash.remove();
   runApp(const MyApp());
 }
 
