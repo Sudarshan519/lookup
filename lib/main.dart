@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:lookup/screens/detail_screen.dart';
-import 'package:lookup/screens/home_screen.dart';
-import 'package:lookup/screens/login_screen.dart';
-import 'package:lookup/screens/signup_screen.dart';
+import 'package:lookup/app/init_dependencies.dart';
+import 'package:lookup/config/routes/rotues.dart';
+import 'package:lookup/features/favourites/presentation/favourites_provider.dart';
+
 import 'package:provider/provider.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:lookup/providers/auth_provider.dart';
-import 'package:lookup/screens/splash_screen.dart';
-import 'package:lookup/usecases/authentication_usecase.dart';
-import 'package:lookup/services/auth_service.dart';
+// import 'package:firebase_core/firebase_core.dart';
+import 'package:lookup/features/auth/presentation/auth_provider.dart';
+import 'package:lookup/ui/splash/splash_screen.dart';
+import 'package:lookup/features/auth/domain/usecases/authentication_usecase.dart';
+import 'package:lookup/features/auth/data/repository/auth_service.dart';
+
+import 'core/constants/app_constants.dart';
 
 void main() async {
+  await appInit(appEnv: AppEnv.PROD);
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
   runApp(const MyApp());
@@ -24,30 +27,19 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => AuthProvider(AuthenticationUseCase(AuthService())),
+          create: (_) =>
+              FirebaseAuthProvider(AuthenticationUseCase(AuthService())),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => FavoritesProvider(),
         ),
       ],
       child: MaterialApp(
         title: 'Lookup',
         theme: ThemeData(
-          primaryColor: const Color.fromARGB(255, 21, 101, 192),
+          primaryColor: const Color(0xff4B39EF),
         ),
-        onGenerateRoute:(settings) {
-          switch (settings.name) {
-            case '/':
-                  return MaterialPageRoute(builder: (_) => SplashScreen());
-               case '/home':return MaterialPageRoute(builder: (_) => HomeScreen());
-               case '/detail':
-            var args = settings.arguments as Map<String, dynamic>?;
-            String? image = args?['image'];
-
-                  return MaterialPageRoute(builder:(_)=>DetailScreen(image: image??'' )   );
-            default:
-          }
-         
-         
-         
- },
+        onGenerateRoute: AppRoutes.onGenerateRoutes,
         home: const SplashScreen(), // Start with SplashScreen
       ),
     );
